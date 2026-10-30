@@ -1,0 +1,67 @@
+CRUSH GHÉ CHƠI — HƯỚNG DẪN NHANH
+================================
+
+Thỉnh thoảng crush của bạn ghé lên màn hình: chào một câu, hun gió thả tim rồi tự đi.
+Crush không giành bàn phím, chuột bấm xuyên qua được, nên bạn cứ làm việc bình thường.
+
+
+CẦN GÌ
+------
+- Windows 10 hoặc 11, bản 64-bit. Không cần cài .NET hay gì thêm.
+- Hình crush đã tách nền (PNG nền trong suốt). Nếu muốn app tự tách nền từ ảnh thường thì cần cài thêm
+  bộ tách nền (tải riêng, khoảng 930 MB) và máy có khoảng 6 GB RAM trống lúc tách.
+
+
+CÀI VÀ CHẠY
+-----------
+1. Giải nén cả thư mục ra chỗ bạn muốn (ví dụ Documents). Giữ thư mục Assets cạnh CrushGheChoi.exe.
+2. Mở CrushGheChoi.exe.
+   Nếu Windows hiện "Windows protected your PC": bấm "More info" rồi "Run anyway"
+   (app chưa được ký số nên Windows cảnh báo vậy).
+3. Màn giới thiệu hiện ra. Bấm "Chọn ảnh crush…" để thêm hình, chọn tần suất ghé, rồi bấm Xong.
+   App nằm ở khay hệ thống (góc phải thanh taskbar, biểu tượng trái tim).
+
+
+THÊM HÌNH CRUSH
+---------------
+1. Chuẩn bị hình đã tách nền (PNG nền trong suốt). Ảnh chân dung, selfie, thấy rõ mặt là đẹp nhất. Cách làm:
+     * remove.bg hoặc Canva (trên web),
+     * Paint trên Windows 11: mở ảnh, bấm nút Remove background rồi lưu thành PNG,
+     * iPhone: mở ảnh, chạm giữ vào người trong ảnh rồi chọn Chia sẻ để lưu hình đã tách.
+2. Mở cửa sổ Thêm hình: chuột phải trái tim ở khay → "Thêm hình crush…",
+   hoặc Cài đặt → Crush → "+ Thêm hình…".
+3. Chọn một hoặc nhiều hình, hoặc kéo thả hình vào cửa sổ. App tự tìm gương mặt và đề xuất chỗ cắt,
+   chỗ tim bay ra. Sau đó bạn kiểm tra từng hình:
+    * Kéo đường cắt màu hồng: phần mờ phía dưới sẽ bị bỏ (thường cắt ngang ngực là đẹp).
+    * Bấm vào hình để đặt chỗ tim bay ra (cạnh môi hoặc bàn tay), chọn tim bay sang trái hay phải.
+    * Chọn "Cục tẩy" rồi tô lên chỗ còn dính nền. Ctrl+Z để hoàn tác.
+    * "Đổi nền" để xem thử hình trên nền tối hoặc nền màn hình.
+4. Bấm Lưu. Crush ghé ngay bằng hình mới để bạn xem.
+- Muốn sửa hoặc xóa hình: Cài đặt → Crush, mỗi hình có nút Sửa và Xóa.
+
+Muốn app tự tách nền từ ảnh thường (JPG…)? Cài bộ tách nền một lần:
+- Thêm một ảnh thường, app sẽ hiện bảng "Ảnh này còn nền". Bấm "Mở trang tải" để trình duyệt tải tệp
+  BiRefNet-portrait-epoch_150.onnx (khoảng 930 MB), rồi bấm "Chọn tệp đã tải…" và chọn tệp đó
+  (thường nằm trong thư mục Downloads). App kiểm tra tệp rồi cài vào máy; xong có thể xóa tệp trong Downloads.
+- Từ đó ảnh thường cũng được tách nền ngay trên máy, mỗi ảnh khoảng một phút, cần khoảng 6 GB RAM trống.
+
+Riêng tư: hình chỉ được xử lý trên máy bạn. App không gửi gì đi và không tự tải gì về.
+
+
+DÙNG HẰNG NGÀY
+--------------
+- Nhấp đúp trái tim ở khay: gọi crush ghé ngay.
+- Chuột phải trái tim: tạm nghỉ, yên lặng 2 giờ, đổi tần suất ghé, đổi vị trí, Cài đặt, Thoát.
+- Crush tự hoãn khi bạn trình chiếu, chơi game, xem phim toàn màn hình, và nghỉ trong giờ yên lặng
+  (mặc định 22:30–08:30).
+
+
+GỠ APP
+------
+1. Cài đặt → Ứng dụng: bỏ chọn "Chạy cùng Windows" (nếu đã bật). Rồi chuột phải trái tim → Thoát.
+2. Xóa thư mục app.
+3. Muốn xóa luôn hình và cài đặt: xóa %APPDATA%\CrushGheChoi và %LOCALAPPDATA%\CrushGheChoi
+   (dán đường dẫn vào thanh địa chỉ của File Explorer).
+
+
+Thông tin bản quyền các thành phần mã nguồn mở: xem THIRD-PARTY-NOTICES.txt.

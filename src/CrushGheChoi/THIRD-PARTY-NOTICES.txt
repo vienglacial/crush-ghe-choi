@@ -1,0 +1,39 @@
+Crush ghé chơi dùng các thành phần mã nguồn mở sau. Cảm ơn các tác giả!
+
+1. ONNX Runtime (chạy model ngay trên máy)
+   Microsoft. Giấy phép MIT. https://github.com/microsoft/onnxruntime
+   Copyright (c) Microsoft Corporation
+
+2. YuNet, model dò gương mặt (face_detection_yunet_2023mar.onnx, đi kèm app)
+   OpenCV Zoo. Giấy phép MIT. https://github.com/opencv/opencv_zoo/tree/main/models/face_detection_yunet
+   Copyright (c) 2020 Shiqi Yu <shiqi.yu@gmail.com>
+
+3. BiRefNet, model tách nền (BiRefNet-portrait; KHÔNG đi kèm app, người dùng tự tải nếu muốn app tự tách nền)
+   Giấy phép MIT. https://github.com/ZhengPeng7/BiRefNet
+   Copyright (c) 2024 ZhengPeng
+   Bản ONNX do dự án rembg chuyển đổi và phát hành (giấy phép MIT): https://github.com/danielgatis/rembg
+   Copyright (c) 2020 Daniel Gatis
+
+4. .NET, WPF, Windows Forms (đóng gói kèm trong CrushGheChoi.exe)
+   Giấy phép MIT. https://github.com/dotnet
+   Copyright (c) .NET Foundation and Contributors
+
+Nội dung giấy phép MIT (áp dụng cho từng thành phần trên, với dòng Copyright tương ứng):
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

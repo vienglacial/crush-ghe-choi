@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "name": "Hình mẫu",
+  "version": "2.0.0",
+  "still": "still.png",
+  "fps": 24,
+  "kissPoint": {
+    "x": 0.601,
+    "y": 0.54
+  },
+  "stills": [
+    {
+      "file": "still.png",
+      "kissPoint": {
+        "x": 0.601,
+        "y": 0.54
+      },
+      "drift": 1
+    }
+  ],
+  "clips": {}
+}

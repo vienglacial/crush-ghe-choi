@@ -1,0 +1,53 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <!-- Chỉ dùng NotifyIcon (biểu tượng khay hệ thống) từ WinForms. -->
+    <UseWindowsForms>true</UseWindowsForms>
+    <RootNamespace>CrushGheChoi</RootNamespace>
+    <AssemblyName>CrushGheChoi</AssemblyName>
+    <AssemblyTitle>Crush ghé chơi</AssemblyTitle>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>Assets\app.ico</ApplicationIcon>
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+    <!-- WFO0003 dành cho app WinForms; app WPF khai báo DPI theo màn hình trong app.manifest. -->
+    <NoWarn>$(NoWarn);WFO0003</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Tránh trùng tên Application, MessageBox… giữa WPF và WinForms. -->
+    <Using Remove="System.Windows.Forms" />
+    <Using Remove="System.Drawing" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CrushGheChoi.Core\CrushGheChoi.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\app.ico" />
+    <Resource Include="Assets\heart-256.png" />
+    <Resource Include="Assets\chime.wav" />
+    <!-- Hình mẫu nhúng sẵn: dùng khi bộ hình trên đĩa bị thiếu hoặc hỏng. Không phải ảnh người thật. -->
+    <Resource Include="Assets\Crush\default\still.png" />
+    <!-- Hình mẫu nằm cạnh exe để đọc bằng đường dẫn và thay được mà không cần build lại. -->
+    <Content Include="Assets\Crush\**\*" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
+    <!-- Model dò gương mặt (YuNet, MIT) đi kèm; model tách nền được tải về khi cần. -->
+    <Content Include="Assets\Models\**\*" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
+    <Content Include="THIRD-PARTY-NOTICES.txt" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.ML.OnnxRuntime" Version="1.31.1" />
+  </ItemGroup>
+
+  <!-- Gói ONNX Runtime kèm tệp .lib để biên dịch C++; app chạy không cần nên không đưa vào bản phát hành. -->
+  <Target Name="DropNativeImportLibraries" AfterTargets="ComputeResolvedFilesToPublishList">
+    <ItemGroup>
+      <ResolvedFileToPublish Remove="@(ResolvedFileToPublish)" Condition="'%(Extension)' == '.lib'" />
+    </ItemGroup>
+  </Target>
+
+</Project>

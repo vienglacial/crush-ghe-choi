@@ -1,0 +1,18 @@
+bin/
+obj/
+dist/
+.vs/
+*.user
+TestResults/
+tools/models/
+tools/.work/
+
+# Ảnh crush và mọi thứ cá nhân: không bao giờ đưa lên git hay vào bản phát hành.
+personal/
+/*.jpg
+/*.jpeg
+/*.png
+/*.heic
+/*.exe
+crush-ghe-choi-dev-plan.md
+__pycache__/

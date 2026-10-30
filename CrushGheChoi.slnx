@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/CrushGheChoi.Core/CrushGheChoi.Core.csproj" />
+    <Project Path="src/CrushGheChoi/CrushGheChoi.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/CrushGheChoi.Tests/CrushGheChoi.Tests.csproj" />
+  </Folder>
+</Solution>
