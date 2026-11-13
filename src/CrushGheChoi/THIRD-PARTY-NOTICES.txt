@@ -14,9 +14,18 @@ Crush ghé chơi dùng các thành phần mã nguồn mở sau. Cảm ơn các t
    Bản ONNX do dự án rembg chuyển đổi và phát hành (giấy phép MIT): https://github.com/danielgatis/rembg
    Copyright (c) 2020 Daniel Gatis
 
-4. .NET, WPF, Windows Forms (đóng gói kèm trong CrushGheChoi.exe)
+4. .NET, WPF, Windows Forms (đóng gói kèm trong app)
    Giấy phép MIT. https://github.com/dotnet
    Copyright (c) .NET Foundation and Contributors
+
+5. Avalonia (giao diện của bản macOS)
+   Giấy phép MIT. https://github.com/AvaloniaUI/Avalonia
+   Copyright (c) AvaloniaUI OÜ
+
+6. SkiaSharp và HarfBuzzSharp (vẽ hình và chữ trong bản macOS)
+   Giấy phép MIT. https://github.com/mono/SkiaSharp
+   Copyright (c) 2015-2016 Xamarin, Inc., Copyright (c) 2017-2018 Microsoft Corporation
+   Dựa trên Skia (giấy phép BSD 3 điều khoản, Copyright (c) 2011 Google Inc.) và HarfBuzz (giấy phép MIT kiểu cũ).
 
 Nội dung giấy phép MIT (áp dụng cho từng thành phần trên, với dòng Copyright tương ứng):
 

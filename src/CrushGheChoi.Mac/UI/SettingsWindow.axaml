@@ -1,0 +1,162 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="CrushGheChoi.UI.SettingsWindow"
+        Title="Crush ghé chơi — Cài đặt"
+        Icon="avares://CrushGheChoi/Assets/heart.png"
+        Width="640" Height="700" MinWidth="560" MinHeight="500"
+        WindowStartupLocation="CenterScreen"
+        Background="#FFF7FA" FontSize="13.5">
+    <Grid RowDefinitions="Auto,*,Auto" Margin="22,18,22,16">
+        <StackPanel Orientation="Horizontal" Spacing="12">
+            <Image Source="avares://CrushGheChoi/Assets/heart.png" Width="34" Height="34" />
+            <StackPanel VerticalAlignment="Center">
+                <TextBlock Text="Crush ghé chơi" FontSize="20" FontWeight="SemiBold" />
+                <TextBlock x:Name="StatusText" Classes="hint" FontSize="12.5" />
+            </StackPanel>
+        </StackPanel>
+
+        <TabControl Grid.Row="1" Margin="0,10,0,0" Padding="0,10,0,0">
+            <TabItem Header="Crush">
+                <ScrollViewer>
+                    <StackPanel>
+                        <Border Classes="card">
+                            <StackPanel>
+                                <Grid ColumnDefinitions="*,Auto">
+                                    <TextBlock Classes="title" Text="Hình crush" />
+                                    <Button Grid.Column="1" Classes="accent" Content="+ Thêm hình…" Padding="14,5" Click="OnAddPhotos" />
+                                </Grid>
+                                <TextBlock x:Name="PhotosHint" Classes="hint" Margin="0,2,0,8" />
+                                <WrapPanel x:Name="PhotoStrip" />
+                            </StackPanel>
+                        </Border>
+
+                        <Border Classes="card">
+                            <StackPanel>
+                                <TextBlock Classes="title" Text="Kích thước" />
+                                <Grid ColumnDefinitions="*,60">
+                                    <Slider x:Name="SizeSlider" Minimum="160" Maximum="560" TickFrequency="10" IsSnapToTickEnabled="True" ValueChanged="OnSizeChanged" />
+                                    <TextBlock x:Name="SizeValue" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                                </Grid>
+                            </StackPanel>
+                        </Border>
+
+                        <Border Classes="card">
+                            <StackPanel>
+                                <TextBlock Classes="title" Text="Trái tim" />
+                                <Grid ColumnDefinitions="Auto,Auto,Auto,*,36">
+                                    <TextBlock Text="Màu" VerticalAlignment="Center" Margin="0,0,8,0" />
+                                    <ComboBox x:Name="PaletteBox" Grid.Column="1" MinWidth="140">
+                                        <ComboBoxItem Content="Hồng và đỏ" />
+                                        <ComboBoxItem Content="Tím" />
+                                        <ComboBoxItem Content="Pastel" />
+                                    </ComboBox>
+                                    <TextBlock Grid.Column="2" Text="Số tim mỗi lần hun" VerticalAlignment="Center" Margin="20,0,8,0" />
+                                    <Slider x:Name="HeartSlider" Grid.Column="3" Minimum="1" Maximum="8" TickFrequency="1" IsSnapToTickEnabled="True" ValueChanged="OnHeartChanged" />
+                                    <TextBlock x:Name="HeartValue" Grid.Column="4" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                                </Grid>
+                                <CheckBox x:Name="ReducedMotionBox" Margin="0,8,0,0" Content="Chuyển động nhẹ — hiện bằng chuyển mờ, ít tim, không nhún" />
+                            </StackPanel>
+                        </Border>
+
+                        <Border Classes="card">
+                            <StackPanel>
+                                <TextBlock Classes="title" Text="Xem thử" />
+                                <WrapPanel>
+                                    <Button Classes="accent" Content="Xem thử chào" Margin="0,0,8,6" Click="OnPreviewGreet" />
+                                    <Button Classes="accent" Content="Xem thử hun" Margin="0,0,8,6" Click="OnPreviewKiss" />
+                                    <Button Classes="soft" Content="Chào rồi hun" Margin="0,0,8,6" Click="OnPreviewBoth" />
+                                </WrapPanel>
+                                <TextBlock Classes="hint" Text="Xem thử dùng các lựa chọn đang chỉnh, kể cả khi chưa bấm Lưu và trong giờ yên lặng." />
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+
+            <TabItem Header="Ghé chơi">
+                <ScrollViewer>
+                    <StackPanel>
+                        <Border Classes="card">
+                            <StackPanel>
+                                <CheckBox x:Name="AutoVisitBox" Content="Tự động ghé chơi" FontWeight="SemiBold" />
+                                <StackPanel Orientation="Horizontal" Margin="24,8,0,0" Spacing="8">
+                                    <TextBlock Text="Mỗi lần cách nhau từ" VerticalAlignment="Center" />
+                                    <TextBox x:Name="MinIntervalBox" Width="60" HorizontalContentAlignment="Center" />
+                                    <TextBlock Text="đến" VerticalAlignment="Center" />
+                                    <TextBox x:Name="MaxIntervalBox" Width="60" HorizontalContentAlignment="Center" />
+                                    <TextBlock Text="phút" VerticalAlignment="Center" />
+                                </StackPanel>
+                                <WrapPanel x:Name="IntervalPresetPanel" Margin="24,8,0,0" />
+                                <TextBlock Classes="hint" Margin="24,2,0,0"
+                                           Text="Mỗi lần crush ghé vào một lúc ngẫu nhiên trong khoảng này (ít nhất 1 phút)." />
+                                <StackPanel Orientation="Horizontal" Margin="0,12,0,0" Spacing="8">
+                                    <CheckBox x:Name="QuietBox" Content="Giờ yên lặng từ" />
+                                    <TextBox x:Name="QuietStartBox" Width="70" HorizontalContentAlignment="Center" />
+                                    <TextBlock Text="đến" VerticalAlignment="Center" />
+                                    <TextBox x:Name="QuietEndBox" Width="70" HorizontalContentAlignment="Center" />
+                                </StackPanel>
+                                <TextBlock Classes="hint" Margin="24,4,0,0" Text="Theo giờ máy, nhập dạng 22:30. Khoảng có thể vắt qua nửa đêm." />
+                            </StackPanel>
+                        </Border>
+
+                        <Border Classes="card">
+                            <Grid ColumnDefinitions="*,Auto">
+                                <TextBlock x:Name="ScheduleText" VerticalAlignment="Center" TextWrapping="Wrap" />
+                                <Button x:Name="ResumeButton" Grid.Column="1" Classes="soft" Content="Tiếp tục ngay" Click="OnResume" />
+                            </Grid>
+                        </Border>
+
+                        <Border Classes="card">
+                            <StackPanel>
+                                <Grid ColumnDefinitions="*,Auto">
+                                    <TextBlock Classes="title" Text="Câu chào (mỗi dòng một câu)" />
+                                    <Button Grid.Column="1" Classes="soft" Content="Dùng lại câu mặc định" Padding="10,3" FontSize="12" Click="OnResetGreetings" />
+                                </Grid>
+                                <TextBox x:Name="GreetingsBox" AcceptsReturn="True" TextWrapping="Wrap" Height="170" VerticalContentAlignment="Top" />
+                                <TextBlock Classes="hint" Margin="0,4,0,0" Text="Mỗi lần ghé bốc một câu; dùng hết lượt mới lặp lại." />
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+
+            <TabItem Header="Khác">
+                <ScrollViewer>
+                    <StackPanel>
+                        <Border Classes="card">
+                            <StackPanel>
+                                <TextBlock Classes="title" Text="Vị trí xuất hiện" />
+                                <WrapPanel>
+                                    <RadioButton x:Name="PlaceRandom" Content="Ngẫu nhiên khắp màn hình" GroupName="Place" Margin="0,0,16,0" />
+                                    <RadioButton x:Name="CornerLeft" Content="Góc trái dưới" GroupName="Place" Margin="0,0,16,0" />
+                                    <RadioButton x:Name="CornerRight" Content="Góc phải dưới" GroupName="Place" />
+                                </WrapPanel>
+                                <CheckBox x:Name="AnyMonitorBox" Margin="0,6,0,0" Content="Ghé ngẫu nhiên trên mọi màn hình (không chỉ màn hình chính)" />
+                            </StackPanel>
+                        </Border>
+
+                        <Border Classes="card">
+                            <StackPanel>
+                                <TextBlock Classes="title" Text="Ứng dụng" />
+                                <CheckBox x:Name="StartupBox" Content="Mở cùng máy (từ lần đăng nhập sau)" />
+                                <TextBlock x:Name="StartupHint" Classes="hint" Margin="24,0,0,8"
+                                           Text="Nên chép app vào thư mục Applications trước khi bật. Chuyển app sang chỗ khác thì bật lại tùy chọn này." />
+                                <Button Classes="soft" Content="Mở thư mục dữ liệu" HorizontalAlignment="Left" Click="OnOpenData" />
+                            </StackPanel>
+                        </Border>
+
+                        <Border Classes="card">
+                            <TextBlock x:Name="AboutText" Classes="hint" FontSize="12.5" />
+                        </Border>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+        </TabControl>
+
+        <Grid Grid.Row="2" ColumnDefinitions="*,Auto,Auto" Margin="0,12,0,0">
+            <TextBlock x:Name="MessageText" VerticalAlignment="Center" TextWrapping="Wrap" Foreground="#C62850" Margin="0,0,12,0" />
+            <Button Grid.Column="1" Classes="accent" Content="Lưu" MinWidth="96" HorizontalContentAlignment="Center" IsDefault="True" Click="OnSave" />
+            <Button Grid.Column="2" Classes="soft" Content="Hủy" MinWidth="80" HorizontalContentAlignment="Center" Margin="8,0,0,0" IsCancel="True" Click="OnCancel" />
+        </Grid>
+    </Grid>
+</Window>

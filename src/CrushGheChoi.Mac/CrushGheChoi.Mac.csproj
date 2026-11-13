@@ -1,0 +1,41 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <RootNamespace>CrushGheChoi</RootNamespace>
+    <AssemblyName>CrushGheChoi</AssemblyName>
+    <AssemblyTitle>Crush ghé chơi</AssemblyTitle>
+    <!-- Bản cho macOS (Apple Silicon). win-x64 chỉ để chạy thử giao diện trên Windows lúc phát triển. -->
+    <RuntimeIdentifiers>osx-arm64;win-x64</RuntimeIdentifiers>
+    <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CrushGheChoi.Core\CrushGheChoi.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="11.3.23" />
+    <PackageReference Include="Avalonia.Desktop" Version="11.3.23" />
+    <PackageReference Include="Avalonia.Themes.Fluent" Version="11.3.23" />
+    <PackageReference Include="Microsoft.ML.OnnxRuntime" Version="1.31.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Dùng chung với bản Windows: chạy model tách nền và kiểm tra tệp model. -->
+    <Compile Include="..\CrushGheChoi\Cutout\CutoutService.cs" Link="Cutout\CutoutService.cs" />
+    <Compile Include="..\CrushGheChoi\Cutout\ModelStore.cs" Link="Cutout\ModelStore.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AvaloniaResource Include="Assets\tray.png" />
+    <AvaloniaResource Include="Assets\heart.png" />
+    <!-- Hình mẫu và model dò gương mặt nằm cạnh tệp chạy, lấy từ bản Windows để không có hai bản. -->
+    <Content Include="..\CrushGheChoi\Assets\Crush\**\*" Link="Assets\Crush\%(RecursiveDir)%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+    <Content Include="..\CrushGheChoi\Assets\Models\**\*" Link="Assets\Models\%(RecursiveDir)%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+    <Content Include="..\CrushGheChoi\THIRD-PARTY-NOTICES.txt" Link="THIRD-PARTY-NOTICES.txt" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+  </ItemGroup>
+
+</Project>

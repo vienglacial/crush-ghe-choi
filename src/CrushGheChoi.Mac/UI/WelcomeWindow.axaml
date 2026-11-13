@@ -1,0 +1,65 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="CrushGheChoi.UI.WelcomeWindow"
+        Title="Chào bạn — Crush ghé chơi"
+        Icon="avares://CrushGheChoi/Assets/heart.png"
+        Width="520" SizeToContent="Height" CanResize="False"
+        WindowStartupLocation="CenterScreen"
+        Background="#FFF7FA" FontSize="13.5">
+    <StackPanel Margin="26,22,26,20">
+        <StackPanel Orientation="Horizontal" Spacing="12">
+            <Image Source="avares://CrushGheChoi/Assets/heart.png" Width="40" Height="40" />
+            <TextBlock Text="Chào bạn, crush ghé chơi nè!" FontSize="21" FontWeight="SemiBold" VerticalAlignment="Center" />
+        </StackPanel>
+        <TextBlock Classes="hint" FontSize="13" Margin="0,12,0,16"
+                   Text="App nằm ở thanh menu trên cùng (biểu tượng trái tim). Thỉnh thoảng crush ghé lên màn hình, chào bạn, hun gió thả tim rồi tự đi. Crush không giành bàn phím và chuột bấm xuyên qua được, bạn cứ làm việc bình thường." />
+
+        <Border Classes="card">
+            <StackPanel>
+                <TextBlock Classes="title" Text="1. Thêm hình crush của bạn" />
+                <TextBlock Classes="hint"
+                           Text="Chọn vài hình crush đã tách nền (PNG nền trong suốt, làm bằng remove.bg, Canva, hoặc chạm giữ ảnh trên iPhone). Chưa có hình thì crush tạm là một trái tim dễ thương." />
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0" Spacing="12">
+                    <Button Classes="accent" Content="Chọn ảnh crush…" Click="OnAddPhotos" />
+                    <TextBlock x:Name="PhotoCountText" Classes="hint" VerticalAlignment="Center" />
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <Border Classes="card">
+            <StackPanel>
+                <TextBlock Classes="title" Text="2. Xem thử" />
+                <Button Classes="accent" Content="Cho tui xem thử" HorizontalAlignment="Left" Click="OnPreview" />
+            </StackPanel>
+        </Border>
+
+        <Border Classes="card">
+            <StackPanel>
+                <TextBlock Classes="title" Text="3. Kích thước và vị trí xuất hiện" />
+                <StackPanel Orientation="Horizontal" Spacing="16">
+                    <RadioButton x:Name="SizeSmall" Content="Nhỏ" GroupName="Size" />
+                    <RadioButton x:Name="SizeMedium" Content="Vừa" GroupName="Size" IsChecked="True" />
+                    <RadioButton x:Name="SizeLarge" Content="Lớn" GroupName="Size" />
+                </StackPanel>
+                <WrapPanel Margin="0,4,0,0">
+                    <RadioButton x:Name="PlaceRandom" Content="Ngẫu nhiên khắp màn hình" GroupName="Place" IsChecked="True" Margin="0,0,16,0" />
+                    <RadioButton x:Name="CornerLeft" Content="Góc trái dưới" GroupName="Place" Margin="0,0,16,0" />
+                    <RadioButton x:Name="CornerRight" Content="Góc phải dưới" GroupName="Place" />
+                </WrapPanel>
+            </StackPanel>
+        </Border>
+
+        <Border Classes="card">
+            <StackPanel>
+                <TextBlock Classes="title" Text="4. Lịch ghé chơi" />
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <CheckBox x:Name="AutoBox" IsChecked="True" Content="Tự động ghé ngẫu nhiên mỗi" />
+                    <ComboBox x:Name="IntervalBox" MinWidth="130" VerticalAlignment="Center" />
+                </StackPanel>
+                <TextBlock Classes="hint" Margin="0,4,0,0" Text="Trừ giờ yên lặng 22:30–08:30. Mọi thứ chỉnh lại được trong Cài đặt (bấm trái tim trên thanh menu)." />
+            </StackPanel>
+        </Border>
+
+        <Button Classes="accent" Content="Xong" HorizontalAlignment="Right" Padding="24,8" IsDefault="True" Click="OnDone" />
+    </StackPanel>
+</Window>

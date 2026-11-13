@@ -1,0 +1,70 @@
+CRUSH GHÉ CHƠI CHO MAC — HƯỚNG DẪN NHANH
+========================================
+
+BẢN THỬ NGHIỆM: bản Mac được dựng và kiểm tra trên Windows, CHƯA được chạy thử trên máy Mac thật.
+Nếu app không mở được hoặc chạy sai, nhờ bạn báo lỗi tại:
+https://github.com/vienglacial/crush-ghe-choi/issues
+
+Thỉnh thoảng crush của bạn ghé lên màn hình: chào một câu, hun gió thả tim rồi tự đi.
+Crush không giành bàn phím, chuột bấm xuyên qua được, nên bạn cứ làm việc bình thường.
+
+
+CẦN GÌ
+------
+- Máy Mac chip Apple (M1 trở lên). Máy Mac chip Intel chưa dùng được.
+- macOS 14 (Sonoma) trở lên.
+- Hình crush đã tách nền (PNG nền trong suốt).
+
+
+CÀI VÀ MỞ LẦN ĐẦU
+-----------------
+1. Giải nén tệp zip, kéo CrushGheChoi.app vào thư mục Applications (Ứng dụng).
+2. Mở Terminal (tìm "Terminal" bằng Spotlight), dán dòng sau rồi nhấn Enter:
+
+       xattr -cr /Applications/CrushGheChoi.app
+
+   Bước này bắt buộc vì app chưa được Apple chứng nhận. Bỏ qua thì macOS sẽ báo app
+   "bị hỏng" hoặc "không thể mở".
+3. Mở CrushGheChoi trong Applications. Màn giới thiệu hiện ra; bấm "Chọn ảnh crush…" để thêm hình.
+4. App nằm ở thanh menu trên cùng màn hình (biểu tượng trái tim), không có biểu tượng ở Dock.
+
+
+THÊM HÌNH CRUSH
+---------------
+1. Chuẩn bị hình đã tách nền (PNG nền trong suốt). Ảnh chân dung, thấy rõ mặt là đẹp nhất. Cách làm:
+     * trên Mac: mở ảnh bằng Preview rồi chọn Tools → Remove Background, hoặc trong Photos
+       nhấp chuột phải vào ảnh → Copy Subject rồi dán vào Preview (File → New from Clipboard) và lưu PNG,
+     * remove.bg hoặc Canva (trên web),
+     * iPhone: chạm giữ vào người trong ảnh rồi chọn Chia sẻ.
+2. Bấm trái tim trên thanh menu → "Thêm hình crush…", chọn hình hoặc kéo thả hình vào cửa sổ.
+3. Kiểm tra từng hình: kéo đường cắt màu hồng, bấm vào hình để đặt chỗ tim bay ra,
+   dùng "Cục tẩy" cho chỗ còn dính nền (Cmd+Z để hoàn tác), rồi bấm Lưu.
+- Sửa hoặc xóa hình: Cài đặt → Crush.
+- Ảnh thường (JPG) cần bộ tách nền: thêm ảnh, app sẽ hướng dẫn tự tải tệp BiRefNet-portrait (khoảng 930 MB)
+  rồi chọn tệp đó. Tách nền cần khoảng 6 GB RAM trống, mỗi ảnh khoảng một phút.
+
+Riêng tư: hình chỉ được xử lý trên máy bạn. App không gửi gì đi và không tự tải gì về.
+
+
+DÙNG HẰNG NGÀY
+--------------
+Bấm trái tim trên thanh menu: Ghé chơi ngay, Tạm nghỉ, Tần suất ghé, Vị trí xuất hiện, Cài đặt, Thoát.
+
+
+KHÁC VỚI BẢN WINDOWS
+--------------------
+- Crush không hiện trên app đang mở toàn màn hình.
+- Chưa có tiếng chuông, chưa kéo để chỉnh vị trí, chưa đọc được ảnh HEIC.
+- "Mở cùng máy" trong Cài đặt → Khác có hiệu lực từ lần đăng nhập sau.
+
+
+GỠ APP
+------
+1. Cài đặt → Khác: bỏ chọn "Mở cùng máy" (nếu đã bật). Bấm trái tim → Thoát.
+2. Xóa CrushGheChoi.app khỏi Applications.
+3. Muốn xóa luôn hình và cài đặt: trong Finder chọn Go → Go to Folder, dán
+   ~/Library/Application Support/CrushGheChoi rồi xóa thư mục đó.
+
+
+Thông tin bản quyền các thành phần mã nguồn mở: xem THIRD-PARTY-NOTICES.txt trong app
+(nhấp chuột phải vào app → Show Package Contents → Contents/MacOS).

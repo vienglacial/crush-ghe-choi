@@ -1,6 +1,7 @@
 <Solution>
   <Folder Name="/src/">
     <Project Path="src/CrushGheChoi.Core/CrushGheChoi.Core.csproj" />
+    <Project Path="src/CrushGheChoi.Mac/CrushGheChoi.Mac.csproj" />
     <Project Path="src/CrushGheChoi/CrushGheChoi.csproj" />
   </Folder>
   <Folder Name="/tests/">

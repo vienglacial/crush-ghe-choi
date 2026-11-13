@@ -1,10 +1,17 @@
 # Crush ghé chơi
 
-App Windows nhỏ nằm ở khay hệ thống. Thỉnh thoảng crush ghé lên màn hình, chào, hun gió thả tim rồi tự đi. Crush không giành bàn phím, và chuột bấm xuyên qua được.
+<img src="design/crush-ghe-choi-1x1.png" alt="Crush ghé chơi" width="420">
+
+App nhỏ nằm ở khay hệ thống của Windows (và thanh menu của macOS, bản thử nghiệm). Thỉnh thoảng crush ghé lên màn hình, chào, hun gió thả tim rồi tự đi. Crush không giành bàn phím, và chuột bấm xuyên qua được.
 
 Người dùng tự thêm hình crush của họ: hình đã tách nền (PNG trong suốt) dùng luôn; ai tự tải thêm bộ tách nền thì app tách nền ảnh thường ngay trên máy. App không gửi ảnh đi đâu và không tự tải gì về. Bản phát hành không chứa ảnh người thật nào; chưa thêm hình thì crush là một trái tim hoạt hình.
 
-**Tải app:** vào [Releases](https://github.com/vienglacial/crush-ghe-choi/releases), tải `CrushGheChoi-<phiên bản>-win-x64.zip`, giải nén rồi mở `CrushGheChoi.exe`. Hướng dẫn chi tiết: [packaging/HUONG-DAN.txt](packaging/HUONG-DAN.txt).
+**Tải app:** vào [Releases](https://github.com/vienglacial/crush-ghe-choi/releases).
+
+- **Windows 10/11:** tải `CrushGheChoi-<phiên bản>-win-x64.zip`, giải nén rồi mở `CrushGheChoi.exe`. Hướng dẫn: [packaging/HUONG-DAN.txt](packaging/HUONG-DAN.txt).
+- **macOS (chip Apple, thử nghiệm):** tải `CrushGheChoi-<phiên bản>-mac-arm64.zip`, kéo app vào Applications rồi chạy `xattr -cr /Applications/CrushGheChoi.app` trong Terminal trước khi mở. Hướng dẫn: [packaging/HUONG-DAN-MAC.txt](packaging/HUONG-DAN-MAC.txt). Bản này được dựng và kiểm tra trên Windows, **chưa chạy thử trên máy Mac thật**; gặp lỗi xin báo ở [Issues](https://github.com/vienglacial/crush-ghe-choi/issues).
+
+Phần "Chạy app" và "Tính năng" dưới đây viết cho bản Windows; khác biệt của bản Mac ở mục [Bản macOS](#bản-macos).
 
 ## Chạy app
 
@@ -106,6 +113,16 @@ python -P tools/prepare_asset.py personal/crush-set.json ^
 - Model BiRefNet-portrait (khoảng 1 GB): <https://github.com/danielgatis/rembg/releases/download/v0.0.0/BiRefNet-portrait-epoch_150.onnx>, để vào `tools/models/`. Bản nhẹ (BiRefNet-general lite, 224 MB) và ISNet đã thử: hay dính người hoặc đồ vật phía sau.
 - Mở `preview.jpg` để kiểm tra: mỗi hình có lưới 10% và một chấm đỏ ở điểm tim. Thêm `--only <số>` để dựng lại một ảnh.
 
+## Bản macOS
+
+Bản Mac ([src/CrushGheChoi.Mac](src/CrushGheChoi.Mac)) viết bằng Avalonia và dùng chung phần lõi với bản Windows: lịch ghé, cài đặt, bộ hình, kịch bản chuyển động, tách nền. App nằm ở thanh menu (không có biểu tượng ở Dock); dữ liệu ở `~/Library/Application Support/CrushGheChoi`.
+
+- **Trạng thái:** thử nghiệm. Giao diện, cửa sổ crush, thêm hình và lưu cài đặt đã được chạy thử bằng chính bản Avalonia này trên Windows. Phần riêng của macOS chưa được chạy trên máy thật: cho chuột bấm xuyên qua cửa sổ crush, biểu tượng trên thanh menu, ẩn khỏi Dock, mở cùng máy.
+- **Cần:** máy Mac chip Apple (M1 trở lên), macOS 14 trở lên. Chưa có bản cho Mac chip Intel vì ONNX Runtime không còn kèm thư viện cho máy đó.
+- **Chưa có so với bản Windows:** nhận biết khóa máy và app toàn màn hình (cửa sổ crush không hiện trên app toàn màn hình), tiếng chuông, kéo để chỉnh vị trí, chọn bộ hình trong thư mục khác, sao lưu cấu hình, ảnh HEIC.
+- **Chữ ký:** app chỉ có chữ ký ad-hoc, chưa được Apple chứng nhận, nên người dùng phải chạy `xattr -cr` trước khi mở lần đầu.
+- **Chạy thử trên Windows lúc phát triển:** `dotnet run --project src/CrushGheChoi.Mac` (đặt `CRUSHGHECHOI_PROFILE` để không đụng dữ liệu thật; thêm `--settings` để mở thẳng Cài đặt).
+
 ## Build từ mã nguồn
 
 Cần .NET 10 SDK. Trên máy này SDK cài riêng ở `%LOCALAPPDATA%\Microsoft\dotnet`, nên đặt `DOTNET_ROOT` trỏ vào đó.
@@ -121,7 +138,7 @@ dotnet test tests/CrushGheChoi.Tests/CrushGheChoi.Tests.csproj
 powershell -ExecutionPolicy Bypass -File packaging\build-public.ps1
 ```
 
-Script dọn sạch `bin`, `obj`, `dist` (build không tự xóa tệp thừa, nên ảnh cũ có thể còn sót), chạy kiểm thử, đóng gói bản portable một tệp exe kèm runtime, kiểm tra trong gói **chỉ có đúng các tệp cho phép** (không ảnh cá nhân, không model tách nền), rồi nén thành `dist\CrushGheChoi-<phiên bản>-win-x64.zip`.
+Script dọn sạch `bin`, `obj`, `dist` (build không tự xóa tệp thừa, nên ảnh cũ có thể còn sót), chạy kiểm thử, đóng gói bản portable một tệp exe kèm runtime, kiểm tra trong gói **chỉ có đúng các tệp cho phép** (không ảnh cá nhân, không model tách nền), rồi nén thành `dist\CrushGheChoi-<phiên bản>-win-x64.zip`. Sau đó script dựng chéo bản macOS và gọi [packaging/make_mac_app.py](packaging/make_mac_app.py) để gói thành `CrushGheChoi.app` trong `dist\CrushGheChoi-<phiên bản>-mac-arm64.zip`: tệp zip giữ quyền chạy kiểu Unix, và script kiểm tra chữ ký của tệp chạy cùng mọi thư viện (băm lại từng trang rồi so với chữ ký), vì máy Mac chip Apple không chạy mã thiếu chữ ký.
 
 Không bật `EnableCompressionInSingleFile`. Bản nén nhỏ hơn trên đĩa nhưng tốn RAM gấp nhiều lần: đo được khoảng 250 MB, so với khoảng 50 MB khi không nén.
 
@@ -133,11 +150,14 @@ Cấu trúc:
 | `src/CrushGheChoi` | App WPF: cửa sổ crush trong suốt, khay hệ thống, Cài đặt, màn giới thiệu, cửa sổ Thêm hình, chạy model bằng ONNX Runtime, tải model, theo dõi khóa máy/ngủ/toàn màn hình, nhiều màn hình. |
 | `tests/CrushGheChoi.Tests` | Kiểm thử tự động (xUnit). |
 | `tools` | Script tách nền hàng loạt, tạo icon, tiếng chuông và hình mẫu. |
-| `packaging` | Script đóng gói bản phát hành và hướng dẫn cho người dùng. |
+| `src/CrushGheChoi.Mac` | App Avalonia cho macOS (thử nghiệm): cửa sổ crush, menu trên thanh menu, Cài đặt, màn giới thiệu, cửa sổ Thêm hình. |
+| `packaging` | Script đóng gói bản phát hành (Windows và macOS) và hướng dẫn cho người dùng. |
+| `design` | Hình minh họa 1:1 của app (HTML nguồn, PNG) và script vẽ bé chibi pixel. |
 | `personal` | Ảnh và cấu hình cá nhân. Không đưa lên git, không vào bản phát hành. |
 
 ## Giới hạn đã biết
 
+- **Bản macOS chưa chạy thử trên máy Mac thật** (xem mục Bản macOS).
 - **Tự tách nền chạy bằng CPU:** khoảng 45–90 giây mỗi ảnh và cần khoảng 6 GB RAM trống. App cảnh báo khi RAM trống ít. GPU 6 GB (RTX 2060) không đủ bộ nhớ cho model này nên không dùng GPU.
 - **Trang tải bộ tách nền** là bản phát hành của rembg trên GitHub. Nếu đường dẫn đó mất, cần tìm đúng tệp `BiRefNet-portrait-epoch_150.onnx` ở nơi khác (app kiểm tra mã SHA-256 nên tệp sai sẽ bị từ chối).
 - **Ảnh HEIC** cần cài *HEIF Image Extensions* từ Microsoft Store.

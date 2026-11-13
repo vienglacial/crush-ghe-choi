@@ -1,4 +1,4 @@
-﻿# Đóng gói bản phát hành công khai: dist\CrushGheChoi-<phiên bản>-win-x64.zip
+﻿# Đóng gói bản phát hành công khai: dist\CrushGheChoi-<phiên bản>-win-x64.zip và -mac-arm64.zip
 # Chạy từ thư mục gốc dự án:  powershell -ExecutionPolicy Bypass -File packaging\build-public.ps1
 # Cần .NET 10 SDK (trên máy này cài riêng ở %LOCALAPPDATA%\Microsoft\dotnet).
 
@@ -19,6 +19,7 @@ $zip = "$root\dist\CrushGheChoi-$version-win-x64.zip"
 # 1. Dọn sạch: build không tự xóa tệp thừa, nên ảnh cũ có thể còn sót trong bin/obj/dist.
 foreach ($dir in @("$root\dist", "$root\src\CrushGheChoi\bin", "$root\src\CrushGheChoi\obj",
                    "$root\src\CrushGheChoi.Core\bin", "$root\src\CrushGheChoi.Core\obj",
+                   "$root\src\CrushGheChoi.Mac\bin", "$root\src\CrushGheChoi.Mac\obj",
                    "$root\tests\CrushGheChoi.Tests\bin", "$root\tests\CrushGheChoi.Tests\obj")) {
     if (Test-Path $dir) { Remove-Item -Recurse -Force $dir }
 }
@@ -58,3 +59,13 @@ if ((Get-FileHash "$out\Assets\Crush\default\still.png").Hash -ne $placeholder) 
 Compress-Archive -Path $out -DestinationPath $zip -CompressionLevel Optimal -Force
 $size = (Get-Item $zip).Length / 1MB
 Write-Host ("Xong: {0} ({1:N0} MB)" -f $zip, $size)
+
+# 6. Bản macOS (Apple Silicon): dựng chéo từ Windows, gói thành .app trong zip giữ quyền chạy,
+#    kiểm tra chữ ký của tệp chạy và các thư viện. Bản này chưa được chạy thử trên máy Mac thật.
+$macPublish = "$root\dist\mac-publish"
+dotnet publish src\CrushGheChoi.Mac\CrushGheChoi.Mac.csproj -c Release -r osx-arm64 --self-contained true `
+    -p:DebugType=none -o $macPublish -nologo -v q
+if ($LASTEXITCODE -ne 0) { throw "Đóng gói bản Mac thất bại" }
+python -P packaging\make_mac_app.py $macPublish "$root\dist\CrushGheChoi-$version-mac-arm64.zip" $version
+if ($LASTEXITCODE -ne 0) { throw "Gói bản Mac thất bại" }
+Remove-Item -Recurse -Force $macPublish
